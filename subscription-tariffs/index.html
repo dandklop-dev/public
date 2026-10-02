@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Тарифы подписки на цветы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+
+<style>
+:root{
+  --paper:#F2F3F6;
+  --surface:#FFFFFF;
+  --sunk:#FAFAFC;
+  --ink:#1E222B;
+  --muted:#616A79;
+  --faint:#8B94A3;
+  --rule:#DBDEE5;
+  --rule-soft:#E9EBF0;
+  --accent:#BE3069;
+  --accent-soft:#F7E6EE;
+  --warn:#9A5B12;
+  --warn-soft:#FBEEDC;
+  --ok:#2F6B4A;
+  --ok-soft:#E3EFE7;
+
+  --f-serif:'Literata',Georgia,'Times New Roman',serif;
+  --f-sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#13151A;--surface:#1B1E25;--sunk:#181B21;--ink:#E5E8EE;
+    --muted:#98A0AE;--faint:#79818F;--rule:#2A2E38;--rule-soft:#232731;
+    --accent:#EB7CAB;--accent-soft:#2B1C24;--warn:#E0A758;--warn-soft:#2B2213;
+    --ok:#7FBE9B;--ok-soft:#1A261F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13151A;--surface:#1B1E25;--sunk:#181B21;--ink:#E5E8EE;
+  --muted:#98A0AE;--faint:#79818F;--rule:#2A2E38;--rule-soft:#232731;
+  --accent:#EB7CAB;--accent-soft:#2B1C24;--warn:#E0A758;--warn-soft:#2B2213;
+  --ok:#7FBE9B;--ok-soft:#1A261F;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--f-sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding-inline:20px;padding-block:0 80px}
+
+/* masthead */
+.mast{padding-block:52px 26px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+h1{font-family:var(--f-serif);font-weight:600;font-size:clamp(1.95rem,5.6vw,2.9rem);line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.dek{font-family:var(--f-serif);font-style:italic;font-size:clamp(1rem,2.4vw,1.18rem);line-height:1.5;color:var(--muted);max-width:52ch;margin:16px 0 0}
+.mast-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+
+section{padding-block:44px 0;border-top:1px solid var(--rule);margin-top:44px}
+section:first-of-type{border-top:0}
+.s-num{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h2{font-family:var(--f-serif);font-weight:600;font-size:clamp(1.4rem,3.4vw,1.85rem);line-height:1.16;letter-spacing:-.012em;margin:0 0 14px;text-wrap:balance}
+h3{font-size:1.02rem;font-weight:600;line-height:1.35;margin:28px 0 8px}
+p{margin:0 0 14px;max-width:68ch}
+.lede{color:var(--muted)}
+ul,ol{margin:0 0 14px;padding-left:1.15rem;max-width:68ch}
+li{margin-bottom:6px}
+
+/* verdict */
+.verdict{background:var(--surface);border:1px solid var(--rule);padding:22px 24px;margin:26px 0 0}
+.verdict .lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
+.verdict p{font-family:var(--f-serif);font-size:1.06rem;line-height:1.55;margin:0 0 12px}
+.verdict p:last-child{margin-bottom:0}
+
+.note{background:var(--surface);border:1px solid var(--rule);padding:16px 18px;margin:20px 0;max-width:68ch}
+.note.warn{background:var(--warn-soft);border-color:transparent}
+.note.ok{background:var(--ok-soft);border-color:transparent}
+.note p:last-child{margin-bottom:0}
+.note .lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:8px}
+.note.warn .lbl{color:var(--warn)}
+.note.ok .lbl{color:var(--ok)}
+
+/* table */
+.tscroll{overflow-x:auto;margin:18px 0 10px;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;min-width:720px;background:var(--surface)}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top;font-size:14px;line-height:1.45}
+th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:400;background:var(--paper);border-bottom:1px solid var(--rule);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.co{font-weight:600;white-space:nowrap}
+td.num{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.usd{font-family:var(--f-mono);font-size:13px;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.grp td{background:var(--sunk);font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-block:8px}
+.caption{font-size:12.5px;color:var(--faint);line-height:1.5;max-width:68ch;margin:0 0 18px}
+
+/* tariff cards */
+.tariffs{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.tariff{background:var(--surface);border:1px solid var(--rule);padding:0;overflow:hidden}
+.t-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:16px 20px;border-bottom:1px solid var(--rule-soft);background:var(--sunk)}
+.t-name{font-family:var(--f-serif);font-size:1.22rem;font-weight:600;line-height:1.2;margin:0}
+.t-price{font-family:var(--f-mono);font-size:1.05rem;color:var(--accent);font-variant-numeric:tabular-nums;margin-left:auto}
+.t-tag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.t-body{padding:4px 20px 18px}
+.trow{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:0 16px;padding:11px 0;border-bottom:1px solid var(--rule-soft)}
+.trow:last-child{border-bottom:0}
+.trow dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);padding-top:4px}
+.trow dd{margin:0;font-size:14.5px;line-height:1.5}
+.trow dd .quote{font-family:var(--f-serif);font-style:italic;color:var(--ink)}
+.var{font-family:var(--f-mono);font-size:.88em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;white-space:nowrap}
+
+/* rules */
+.rules{list-style:none;padding:0;margin:14px 0 0;max-width:70ch}
+.rules li{display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--rule-soft);margin:0}
+.rules li:first-child{border-top:0}
+.rules .m{font-family:var(--f-mono);font-size:12.5px;line-height:1.5;padding-top:1px}
+.yes{color:var(--ok)}
+.no{color:var(--accent)}
+
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--faint);line-height:1.5;max-width:68ch}
+footer a{color:var(--faint)}
+
+@media (max-width:640px){
+  .trow{grid-template-columns:1fr;gap:3px}
+  .trow dt{padding-top:0}
+  .t-price{margin-left:0;width:100%}
+  body{font-size:15.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">MyGlobalFlowers · подписка на цветы</p>
+    <h1>Тарифы подписки на цветы</h1>
+    <p class="dek">Цены десяти сервисов Европы и США, рекомендованная сетка тарифов и описания для макета — число стеблей, состав и формулировки.</p>
+    <div class="mast-meta">
+      <span>2 октября 2026</span>
+      <span>Для DESIGN-76</span>
+      <span>10 сервисов</span>
+    </div>
+  </header>
+
+  <!-- ВЫВОД -->
+  <section>
+    <p class="s-num">Коротко</p>
+    <h2>Вывод до деталей</h2>
+    <div class="verdict">
+      <span class="lbl">Рекомендация</span>
+      <p><strong>$49 / $69 / $99 — рабочая сетка, но сравнивать себя надо не с теми, с кем кажется.</strong> Европейский рынок делится на два разных продукта, и дешёвая его половина — это не конкуренты MGF.</p>
+      <p>Bloom&nbsp;&amp;&nbsp;Wild, Colvin и Blume2000 держат $25–38 за доставку, потому что продают <em>коробку со стеблями в почтовый ящик</em>: нет курьера, нет сборки, получатель собирает букет сам. MGF везёт готовый букет от флориста курьером до двери — это другая себестоимость и другой продукт.</p>
+      <p>Прямые аналоги по модели — <strong>Bergamotte ($46–75) и UrbanStems ($60–105)</strong>. На их фоне $49 / $69 / $99 стоит ровно там, где надо: вход дешевле обоих, верх ниже UrbanStems Luxe.</p>
+    </div>
+  </section>
+
+  <!-- ТАБЛИЦА -->
+  <section>
+    <p class="s-num">Часть 1 · Рынок</p>
+    <h2>Что берут десять сервисов</h2>
+    <p class="lede">Цена за одну доставку, если не указано иное. Пересчёт в доллары по курсу начала октября 2026 — для сопоставимости, не для планирования.</p>
+
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Сервис</th><th>Цена за доставку</th><th>≈ USD</th><th>Размер</th><th>Модель доставки</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grp"><td colspan="5">США</td></tr>
+          <tr>
+            <td class="co">UrbanStems</td>
+            <td class="num">$60 / $75 / $105</td>
+            <td class="usd">60–105</td>
+            <td>3 стиля, стебли указаны в каждом</td>
+            <td>Курьер, готовый букет</td>
+          </tr>
+          <tr>
+            <td class="co">The Bouqs</td>
+            <td class="num">$36–64</td>
+            <td class="usd">36–64</td>
+            <td>10–16 / 20–32 / 30–45 стеблей</td>
+            <td>Ферма напрямую, курьер</td>
+          </tr>
+          <tr>
+            <td class="co">BloomsyBox</td>
+            <td class="num">$59.99 / мес</td>
+            <td class="usd">60–70</td>
+            <td>20 / 24 / 27 стеблей</td>
+            <td>Коробка почтой</td>
+          </tr>
+          <tr>
+            <td class="co">Farmgirl Flowers</td>
+            <td class="num">$49–79 + $12–15 доставка</td>
+            <td class="usd">61–94</td>
+            <td>Конкретный букет из каталога</td>
+            <td>Курьер, доставка платная</td>
+          </tr>
+          <tr>
+            <td class="co">1-800-Flowers</td>
+            <td class="num">$59.99</td>
+            <td class="usd">60</td>
+            <td>Сезонный букет + ваза</td>
+            <td>Клуб на 3 / 6 / 12 мес</td>
+          </tr>
+          <tr class="grp"><td colspan="5">Европа</td></tr>
+          <tr>
+            <td class="co">Bergamotte</td>
+            <td class="num">€42,90 / €49,90 / €69,90</td>
+            <td class="usd">46–75</td>
+            <td>По диаметру: 30–35 / 35–40 / 40–45 см</td>
+            <td>Курьер, готовый букет</td>
+          </tr>
+          <tr>
+            <td class="co">Freddie's Flowers</td>
+            <td class="num">£25–30, Showstopper £41</td>
+            <td class="usd">32–52</td>
+            <td>2 размера</td>
+            <td>Коробка у двери, сборка клиентом</td>
+          </tr>
+          <tr>
+            <td class="co">Bloom &amp; Wild</td>
+            <td class="num">£22 / £25 / £27</td>
+            <td class="usd">28–34</td>
+            <td>Classic / Statement / Luxe</td>
+            <td>Почтовый ящик</td>
+          </tr>
+          <tr>
+            <td class="co">Colvin</td>
+            <td class="num">€23 / €28 / €34</td>
+            <td class="usd">25–37</td>
+            <td>10 / 15 / 16–30 стеблей</td>
+            <td>Сеть флористов, курьер</td>
+          </tr>
+          <tr>
+            <td class="co">Blume2000</td>
+            <td class="num">€22,99 коробка · €26,99 букет</td>
+            <td class="usd">25–29</td>
+            <td>Не раскрыт</td>
+            <td>Коробка либо букет от флориста</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Предоплата за срок, где она есть: Bloom&nbsp;&amp;&nbsp;Wild — £70 / £135 / £265 за 3 / 6 / 12 месяцев; 1-800-Flowers — клуб на 3 / 6 / 12 месяцев по $59,99 за доставку независимо от срока; Bergamotte — те же три размера со сроком 3, 6 или 12 месяцев.</p>
+
+    <h3>Три вещи, которые видно из таблицы</h3>
+    <ul>
+      <li><strong>Стебли как единица измерения — норма.</strong> Их указывают Colvin, Bouqs, BloomsyBox и UrbanStems. Это ожидаемый способ объяснить размер, а не наша выдумка.</li>
+      <li><strong>Bergamotte меряет диаметром, а не стеблями</strong> — 30–35, 35–40, 40–45 см. Для смешанных композиций это честнее: пятнадцать гортензий и пятнадцать гвоздик — букеты разного размера. Стоит дать оба числа.</li>
+      <li><strong>Вилка «от» до «до» внутри тарифа — стандарт.</strong> Bouqs пишет «10–16 стеблей», а не «14». Это и есть ответ на страх наобещать лишнего: диапазон сам по себе снимает обязательство.</li>
+    </ul>
+  </section>
+
+  <!-- СЕТКА -->
+  <section>
+    <p class="s-num">Часть 2 · Сетка</p>
+    <h2>Рекомендованные цены</h2>
+
+    <p>Лестница $49 → $69 → $99 построена правильно: каждый следующий тариф в 1,4 раза дороже предыдущего. Это классическая пропорция, при которой средний воспринимается как разумный компромисс, а не как дорогой Basic.</p>
+
+    <p><strong>Для США можно поднять, но осторожно.</strong> Медиана за доставку там $60–75, то есть $49 — заметно ниже рынка. Напрашивается $59 / $79 / $109. Но тут вы упираетесь в собственный лендинг.</p>
+
+    <div class="note warn">
+      <span class="lbl">Конфликт с «от $49»</span>
+      <p>На лендинге стоит одна цифра на весь мир. Если в США Basic стоит $59, то для американского посетителя «от $49» — неправда, и он это увидит на первом же экране оформления.</p>
+      <p>Чистое решение: <strong>Basic фиксируем на $49 во всех городах</strong>, где подписка запущена, и городскую наценку начинаем применять со Standard. Входной тариф становится маркетинговым обещанием, которое вы держите, а маржу добираете на среднем и верхнем — куда и уходит большинство.</p>
+    </div>
+
+    <p>Если фиксировать Basic нельзя по экономике, остаётся второй вариант: подставлять цену «от» по стране посетителя. Технически это та же задача, что и локализация валюты, и она всё равно понадобится.</p>
+  </section>
+
+  <!-- ТАРИФЫ -->
+  <section>
+    <p class="s-num">Часть 3 · Для макета</p>
+    <h2>Описания тарифов</h2>
+    <p class="lede">Числа откалиброваны по каталогу MGF, где розы стоят $50, дюжина альстромерий $63, а смешанная композиция «Elegance in Bloom» — $65. Это выше местных флористов на размер комиссии, поэтому стебли считаны консервативно: лучше недообещать.</p>
+
+    <div class="tariffs">
+
+      <div class="tariff">
+        <div class="t-head">
+          <h3 class="t-name" style="margin:0">Basic</h3>
+          <span class="t-tag">Повседневный</span>
+          <span class="t-price">$49</span>
+        </div>
+        <div class="t-body">
+          <dl>
+            <div class="trow"><dt>Стебли</dt><dd>13–17</dd></div>
+            <div class="trow"><dt>Диаметр</dt><dd>примерно 28–32 см</dd></div>
+            <div class="trow"><dt>Тип цветов</dt><dd>Сезонные: хризантема, альстромерия, гвоздика, гипсофила, сезонная зелень</dd></div>
+            <div class="trow"><dt>Характер</dt><dd>Моносостав или простое сочетание двух-трёх видов</dd></div>
+            <div class="trow"><dt>Куда</dt><dd>Кухонный стол, рабочее место, прикроватная тумба</dd></div>
+            <div class="trow"><dt>Текст на карточку</dt><dd class="quote">«Букет из того, что свежо на этой неделе. Небольшой, но живой — тот, что меняет настроение комнаты, даже когда за окном ноябрь»</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="tariff">
+        <div class="t-head">
+          <h3 class="t-name" style="margin:0">Standard</h3>
+          <span class="t-tag">Самый частый выбор</span>
+          <span class="t-price">$69</span>
+        </div>
+        <div class="t-body">
+          <dl>
+            <div class="trow"><dt>Стебли</dt><dd>18–24</dd></div>
+            <div class="trow"><dt>Диаметр</dt><dd>примерно 33–38 см</dd></div>
+            <div class="trow"><dt>Тип цветов</dt><dd>Сезонная основа плюс популярные сорта: кустовая роза, эустома, гербера, матиола, диантус. Три-пять видов в букете</dd></div>
+            <div class="trow"><dt>Характер</dt><dd>Смешанная композиция, флорист работает с формой и цветовой гаммой</dd></div>
+            <div class="trow"><dt>Куда</dt><dd>Гостиная, большой стол, подарок без повода</dd></div>
+            <div class="trow"><dt>Текст на карточку</dt><dd class="quote">«Больше объёма и больше сортов. Тот самый букет, о котором спрашивают гости, когда заходят в комнату»</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="tariff">
+        <div class="t-head">
+          <h3 class="t-name" style="margin:0">Premium</h3>
+          <span class="t-tag">Авторская композиция</span>
+          <span class="t-price">$99</span>
+        </div>
+        <div class="t-body">
+          <dl>
+            <div class="trow"><dt>Стебли</dt><dd>25–35</dd></div>
+            <div class="trow"><dt>Диаметр</dt><dd>примерно 40–45 см</dd></div>
+            <div class="trow"><dt>Тип цветов</dt><dd>Всё из Standard плюс редкие и сезонно-дорогие сорта: пионовидная роза, пион, ранункулюс, гортензия, орхидея — по сезону и наличию</dd></div>
+            <div class="trow"><dt>Характер</dt><dd>Крупная авторская сборка, сложная форма, акцентные сорта</dd></div>
+            <div class="trow"><dt>Куда</dt><dd>Просторная комната, ресепшен, переговорная, подарок с эффектом</dd></div>
+            <div class="trow"><dt>Текст на карточку</dt><dd class="quote">«Самый крупный и редкий состав, который флорист может собрать на этой неделе. Выглядит как подарок сам по себе — даже если вы взяли его себе»</dd></div>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note ok">
+      <span class="lbl">Почему именно так</span>
+      <p>Разница между тарифами идёт по <strong>двум осям сразу</strong>: размер и класс сортов. Одного размера мало — тройная цена за вдвое большее число стеблей выглядит неоправданной. Одних сортов тоже мало — их невозможно гарантировать. Вместе они дают понятную лестницу, где каждый шаг объясним.</p>
+    </div>
+  </section>
+
+  <!-- ПРАВИЛА -->
+  <section>
+    <p class="s-num">Часть 4 · Формулировки</p>
+    <h2>Что можно и чего нельзя обещать</h2>
+    <p class="lede">Главное ограничение: букет собирает флорист из того, что есть на складе в день сборки, и в разных городах это разные цветы. Текст должен дать картинку и при этом ничего не гарантировать поимённо.</p>
+
+    <ul class="rules">
+      <li><span class="m yes">да</span><span><strong>Диапазонам.</strong> «18–24 стебля», а не «20 стеблей». Диапазон снимает обязательство и при этом даёт масштаб. Так пишет Bouqs.</span></li>
+      <li><span class="m yes">да</span><span><strong>Классам сортов.</strong> «Сезонные», «популярные», «редкие» — это категории, а не обещания конкретного цветка.</span></li>
+      <li><span class="m yes">да</span><span><strong>Перечню через «например».</strong> «Например, кустовая роза, эустома, гербера» читается как иллюстрация, а не как состав.</span></li>
+      <li><span class="m yes">да</span><span><strong>Одной защитной строке под карточками:</strong> «Точный состав определяет флорист — он собирает из того, что свежо на этой неделе. Поэтому два одинаковых букета вы не получите».</span></li>
+      <li><span class="m no">нет</span><span><strong>Точным числам.</strong> «21 стебель» превращается в обязательство, которое кто-нибудь пересчитает.</span></li>
+      <li><span class="m no">нет</span><span><strong>Названиям как гарантии.</strong> «В Premium всегда пионы» — пионы сезонные, и зимой это невыполнимо.</span></li>
+      <li><span class="m no">нет</span><span><strong>Сравнению с каталогом по конкретному букету.</strong> «Как наш букет Delightful за $233» создаёт ожидание, которое $99 не закроют.</span></li>
+      <li><span class="m no">нет</span><span><strong>Стоковым фото.</strong> Примеры должны быть реальными прошлыми доставками с подписью «что приходило в прошлые недели». Иначе первая же доставка разойдётся с картинкой.</span></li>
+    </ul>
+
+    <div class="note">
+      <span class="lbl">Про фото в карточках</span>
+      <p>Ксения просит фото-примеры в блоках, и это правильно — но они же и самый большой риск. Снимок красивого букета рядом с ценой $49 читается как обещание именно этого букета. Защита: три-четыре <strong>разных</strong> фото в слайдере вместо одного идеального, подпись «примеры прошлых доставок» и одинаковая по стилю съёмка во всех трёх тарифах, чтобы разница читалась размером, а не качеством фотографии.</p>
+    </div>
+  </section>
+
+  <footer>
+    Цены конкурентов собраны по открытым страницам и обзорам 1–2 октября 2026, пересчёт в доллары приблизительный. Числа стеблей и диаметры для тарифов MGF — расчётные, откалиброванные по каталогу myglobalflowers.com; перед публикацией их нужно подтвердить у флористов хотя бы по двум-трём городам с разной наценкой.
+  </footer>
+
+</div>
+</body>
+</html>
