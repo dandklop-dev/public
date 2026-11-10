@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Каталог по конверсии</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F2F3F6;--surface:#FFFFFF;--sunk:#FAFAFC;--ink:#1E222B;--muted:#616A79;
+  --faint:#7A8392;--rule:#DBDEE5;--accent:#BE3069;--accent-soft:#F7E6EE;
+  --blue:#2A5F86;--code-bg:#1E222B;--code-ink:#EEF0F4;--code-muted:#A3ABB8;
+  --f-sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#13151A;--surface:#1B1E25;--sunk:#181B21;--ink:#E5E8EE;--muted:#98A0AE;
+    --faint:#858D9B;--rule:#2A2E38;--accent:#EB7CAB;--accent-soft:#2B1C24;
+    --blue:#7FB3DA;--code-bg:#0E1014;--code-ink:#E5E8EE;--code-muted:#98A0AE;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13151A;--surface:#1B1E25;--sunk:#181B21;--ink:#E5E8EE;--muted:#98A0AE;
+  --faint:#858D9B;--rule:#2A2E38;--accent:#EB7CAB;--accent-soft:#2B1C24;
+  --blue:#7FB3DA;--code-bg:#0E1014;--code-ink:#E5E8EE;--code-muted:#98A0AE;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+.mast{padding-block:52px 26px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+h1{font-size:clamp(26px,4.4vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;margin:0}
+.lead{margin:12px 0 0;color:var(--muted);font-size:17px;max-width:62ch}
+
+section{margin-top:44px}
+h2{font-size:clamp(20px,3vw,24px);font-weight:600;letter-spacing:-.01em;line-height:1.25;margin:0 0 18px}
+h3{font-size:17px;font-weight:600;line-height:1.3;margin:0}
+p{margin:0}
+
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.g3,.g2{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border:1px solid var(--rule);padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.card p{color:var(--muted);font-size:15px}
+.step{border-top:3px solid var(--blue)}
+.step .n{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.lever h3 b{color:var(--accent);font-weight:600}
+
+.formula{margin-top:14px;background:var(--code-bg);color:var(--code-ink);padding:20px 22px;display:flex;flex-direction:column;gap:6px;overflow-x:auto}
+.formula code{font-family:var(--f-mono);font-size:15px;white-space:nowrap}
+.formula code.total{font-weight:500}
+.formula p{margin-top:8px;color:var(--code-muted);font-size:14px;max-width:80ch}
+
+.stats{margin-top:14px}
+.stat{background:var(--surface);border:1px solid var(--rule);padding:16px 20px}
+.stat .v{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1;color:var(--blue);font-variant-numeric:tabular-nums}
+.stat .v.acc{color:var(--accent)}
+.stat p{margin-top:6px;color:var(--muted);font-size:14px}
+.takeaway{margin-top:12px;font-size:15px;color:var(--ink);max-width:80ch}
+.src{margin-top:6px;font-size:13px;color:var(--faint)}
+
+.strip{margin-top:14px;background:var(--sunk);border:1px solid var(--rule);border-left:3px solid var(--accent);padding:14px 18px;font-size:15px;color:var(--muted)}
+.strip b{color:var(--ink);font-weight:600}
+
+ul.notes{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+ul.notes li{background:var(--surface);border:1px solid var(--rule);padding:14px 18px;font-size:15px;color:var(--muted)}
+ul.notes li b{color:var(--ink);font-weight:600}
+
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);font-size:13px;color:var(--faint);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">MyGlobalFlowers · FloMarket</p>
+    <h1>Каталог по конверсии</h1>
+    <p class="lead">Как сайт выбирает порядок товаров в каталоге: из чего складывается балл товара и что меняет порядок поверх него.</p>
+  </header>
+
+  <section>
+    <h2>Как считается балл</h2>
+    <div class="grid g3">
+      <div class="card step">
+        <span class="n">Шаг 1</span>
+        <h3>Сигналы с сайта</h3>
+        <p>Открытие карточки товара (не чаще раза в сутки с одного IP), показ карточки в списке (раз за сессию и только если она появилась на экране), оформленный заказ. Боты и сотрудники не считаются.</p>
+      </div>
+      <div class="card step">
+        <span class="n">Шаг 2</span>
+        <h3>Пересчёт раз в неделю</h3>
+        <p>Понедельник, 04:00. Свежие события весят больше: вес события падает вдвое за 35 дней, данные старше 210 дней удаляются.</p>
+      </div>
+      <div class="card step">
+        <span class="n">Шаг 3</span>
+        <h3>Балл на «товар + домен + город»</h3>
+        <p>Каталог сортирует по нему в момент запроса. У одного и того же букета в Москве и в Париже, на .com и на .de — разные баллы.</p>
+      </div>
+    </div>
+
+    <div class="formula" role="group" aria-label="Формула балла">
+      <code>база = 0,5 · конверсия карточки + 0,3 · конверсия каталога + 0,002 · охват</code>
+      <code class="total">итог = база × сезон × 1000 + ручной рейтинг</code>
+      <p>Конверсии сглажены: пока данных мало, они тянутся к 0,1%, поэтому одна продажа на трёх просмотрах не выстреливает в топ. Охват — сколько раз товар видели, по логарифмической шкале от 0 до 1.</p>
+    </div>
+
+    <div class="grid g3 stats">
+      <div class="stat"><div class="v">0,8–1,3</div><p>балл у 99% пар «товар + город»: данных почти нет</p></div>
+      <div class="stat"><div class="v acc">0,3%</div><p>пар «товар + город» с хотя бы одной продажей</p></div>
+      <div class="stat"><div class="v">5–21</div><p>баллы первой страницы Москвы на FloMarket</p></div>
+    </div>
+    <p class="takeaway">Наверху выдачи в больших городах — товары с продажами. Ниже порядок решает охват: товар, который много показывали, стоит выше свежего.</p>
+    <p class="src">Цифры — по данным на 30.08.2026.</p>
+  </section>
+
+  <section>
+    <h2>Что меняет порядок поверх балла</h2>
+    <div class="grid g2">
+      <div class="card lever">
+        <h3><b>Новинки</b> — каждая 4-я позиция</h3>
+        <p>Новинка — товар с флагом «Новинка», срока у флага нет. Между собой новинки идут не по баллу: сначала товары партнёров, подключённых за последние 90 дней, дальше по кругу — по одному товару от каждого партнёра. Порядок перетасовывается раз в неделю, внутри недели он стабилен.</p>
+      </div>
+      <div class="card lever">
+        <h3><b>Город без статистики</b> — рейтинг столицы</h3>
+        <p>Если в городе на этом домене меньше 10 заказов, берётся балл столицы страны. Ассортимент, цены и доставка остаются свои. Так сортируются 84% городов на myglobalflowers.com. На .it мало заказов и у самой столицы, поэтому взять рейтинг не у кого.</p>
+      </div>
+      <div class="card lever">
+        <h3><b>Ручной рейтинг</b> — плюс к баллу</h3>
+        <p>Ставится в каталоге сайта под админом и виден сразу, без пересчёта. Масштаб большой: +1 поднимает товар выше 99% остальных, +10 — до первой страницы Москвы. В городах со столичным рейтингом ставить нельзя, а правка в столице действует во всех её городах.</p>
+      </div>
+      <div class="card lever">
+        <h3><b>Сезон</b> — ×0,5 или ×1,5</h3>
+        <p>Задаётся в карточке товара в админке: период «день.месяц — день.месяц» без года. Действует на товар во всех доменах и городах. Включается только на понедельничном пересчёте, поэтому сезон стартует и заканчивается с лагом до недели.</p>
+      </div>
+    </div>
+    <p class="strip"><b>Без конверсии:</b> посадочные страницы при первом показе — у них свой порядок по продажам в городе, пересчёт раз в сутки. <b>Раньше балла:</b> на FloMarket товары с доставкой дороже 1 000 ₽ всегда внизу; тег «дешёвые цветы» и Брест на .com сортируются по цене.</p>
+  </section>
+
+  <section>
+    <h2>Ещё важно</h2>
+    <ul class="notes">
+      <li><b>Только сортировка «по популярности».</b> Всё описанное работает при ней — она стоит по умолчанию. При сортировке по цене, по дате или «по возрастанию» новинки не подмешиваются.</li>
+      <li><b>Продажа — это оформленный заказ.</b> Статус не проверяется: отменённые и тестовые заказы тоже поднимают товар. Исключить их предлагается в ONEFLOWERS-10418.</li>
+      <li><b>Тот же балл — и в других местах:</b> гео-страницы, праздничные блоки, блоки главной с сортировкой по популярности.</li>
+      <li><b>Приложение сортирует по баллу сайта:</b> на русском — по FloMarket, на других языках — по своему домену MGF. В части городов MGF оно берёт готовый список, который обновляется раз в сутки в 08:00.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Разбор кода сайта и данных каталога, ноябрь 2026. Страница помечена <code>noindex</code>: по ссылке открывается у всех, в поиск не попадает.
+  </footer>
+
+</div>
+</body>
+</html>
