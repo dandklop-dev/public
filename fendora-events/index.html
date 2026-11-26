@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Карта событий Fendoro и Fendino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column for intro and legend, full-width grouped tables below; type filter as chips above the tables */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --fg: #1b1f27;
+  --muted: #5d6574;
+  --line: #dde1e8;
+  --accent: #3446c9;
+  --accent-tint: #e9ecfb;
+  --push: #b4332c;
+  --push-tint: #fbe9e7;
+  --app: #2f5fa8;
+  --app-tint: #e6eef9;
+  --svc: #5d6574;
+  --svc-tint: #eceef2;
+  --ok: #1f7a4d;
+  --ok-tint: #e3f3ea;
+  --part: #9a5a00;
+  --part-tint: #fbf0dc;
+  --no: #b4332c;
+  --no-tint: #fbe9e7;
+  --f-head: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11141a; --surface: #191d25; --fg: #e6e9ef; --muted: #9ba3b1; --line: #2a303b;
+    --accent: #93a1ff; --accent-tint: #232a4a;
+    --push: #f2847b; --push-tint: #3a2120; --app: #8cb4f0; --app-tint: #1d2a3f; --svc: #a4abb8; --svc-tint: #262b34;
+    --ok: #67c995; --ok-tint: #19301f; --part: #e8ac57; --part-tint: #352a16; --no: #f2847b; --no-tint: #3a2120;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11141a; --surface: #191d25; --fg: #e6e9ef; --muted: #9ba3b1; --line: #2a303b;
+  --accent: #93a1ff; --accent-tint: #232a4a;
+  --push: #f2847b; --push-tint: #3a2120; --app: #8cb4f0; --app-tint: #1d2a3f; --svc: #a4abb8; --svc-tint: #262b34;
+  --ok: #67c995; --ok-tint: #19301f; --part: #e8ac57; --part-tint: #352a16; --no: #f2847b; --no-tint: #3a2120;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 14px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1400px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 10px; max-width: 900px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--f-head); font-weight: 800; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; margin: 0; text-wrap: balance; }
+.lead { color: var(--muted); margin: 0; max-width: 70ch; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.legend h2 { font-family: var(--f-head); font-size: 16px; margin: 0; }
+.legend { display: grid; gap: 10px; max-width: 900px; }
+.legend dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0; align-items: baseline; }
+.legend dd { margin: 0; color: var(--muted); }
+.controls { display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: center; }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ctl-label { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin-right: 4px; text-transform: uppercase; letter-spacing: .05em; }
+.chip {
+  font: 500 13px var(--f-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center;
+}
+.chip .n { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] .n { color: var(--accent); }
+.chip:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.group { display: grid; gap: 10px; }
+.group h2 { font-family: var(--f-head); font-size: 20px; margin: 0; display: flex; gap: 10px; align-items: baseline; }
+.group h2 .cnt { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-weight: 400; }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 1040px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); background: var(--bg); position: sticky; top: 0; }
+col.c-ev { width: 15%; } col.c-tr { width: 20%; } col.c-rc { width: 33%; } col.c-sc { width: 22%; } col.c-ty { width: 10%; }
+.ev { font-weight: 600; }
+.rc p { margin: 0 0 6px; }
+.rc p:last-child { margin: 0; }
+.app-tag { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; color: var(--muted); margin-right: 4px; }
+.sc { display: grid; gap: 6px; }
+.sc .sec { color: var(--muted); font-size: 12.5px; }
+.sc a { color: var(--fg); text-decoration-color: var(--line); text-underline-offset: 2px; }
+.sc a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.none { color: var(--muted); font-style: italic; }
+.pill { display: inline-block; font: 500 12px var(--f-body); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.t-push { color: var(--push); background: var(--push-tint); }
+.t-app { color: var(--app); background: var(--app-tint); }
+.t-svc { color: var(--svc); background: var(--svc-tint); }
+.empty { color: var(--muted); }
+footer { color: var(--muted); font-size: 12.5px; max-width: 900px; }
+@media (max-width: 640px) { .legend dl { grid-template-columns: 1fr; } .legend dd { margin-bottom: 6px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Fendoro · Fendino · карта событий</div>
+    <h1>Карта событий Fendoro и Fendino</h1>
+    <p class="lead">Какие события связывают родительское и детское приложения: что их запускает, что видит получатель, какие экраны есть в макете и уходит ли системный пуш.</p>
+  </header>
+
+
+  <section class="panel legend" aria-labelledby="leg-h">
+    <h2 id="leg-h">Как читать</h2>
+    <dl>
+      <dt><span class="pill t-push">Пуш + в приложении</span></dt><dd>Системное уведомление Android и состояние внутри приложения. Текст пуша — из списка FEN-108.</dd>
+      <dt><span class="pill t-app">В приложении</span></dt><dd>Экран, плашка или статус без системного уведомления.</dd>
+      <dt><span class="pill t-svc">Служебное</span></dt><dd>Обмен данными между приложениями и сервером, пользователь его почти не видит.</dd>
+    </dl>
+  </section>
+
+  <div class="controls" role="group" aria-label="Фильтры">
+    <div class="ctl" id="f-type"><span class="ctl-label">Тип</span></div>
+  </div>
+
+  <div id="groups" class="wrap" style="gap:32px"></div>
+
+  <footer>
+    Источники: код приложений и сервера на 30–31.10.2026, макет «[Android] Fendora» от 25.11 (страница APP), правки в DESIGN-123 от 26.11, список пушей в FEN-108 от 06.11, задачи FEN-114, FEN-116, FEN-123. Ссылки на экраны ведут в файл Figma.
+  </footer>
+</div>
+
+<script>
+const FIG = "https://www.figma.com/design/3jIKpGXB3hNRBhg48wxEPJ/APP?node-id=";
+const TYPES = { push: ["Пуш + в приложении", "t-push"], app: ["В приложении", "t-app"], svc: ["Служебное", "t-svc"] };
+
+// screens: [label, [[name, nodeId], ...]]
+const DATA = [
+ { g: "SOS", rows: [
+  { ev: "SOS поднят", tr: "Fendino: ребёнок удерживает кнопку SOS 3 секунды",
+    rc: [["Fendoro", "Пуш «SOS от {Имя}»: высокий приоритет и звук, отключить нельзя, тихие часы не действуют (FEN-108, п. 1). По тапу экран тревоги: имя, адрес, заряд, мини-карта, «Позвонить», «Показать на карте», «Я в курсе». На карте активное состояние SOS, в ленте «SOS сигнал»."], ["Fendino", "«Сигнал отправлен», кнопка отмены."]],
+    sc: [["Fendoro · SOS от ребёнка", [["Пуш «SOS»","1512-8335"],["Тревога SOS","1512-8455"],["Ребёнок на карте","1512-8588"]]], ["Fendoro · История", [["События","1508-4180"]]], ["Fendino · SOS", [["Главный","1510-3209"],["Сигнал отправлен","1510-3262"]]]],
+    ty: "push" },
+  { ev: "SOS доставлен", tr: "Сервер: сигнал получило хотя бы одно приложение Fendoro",
+    rc: [["Fendino", "«Сигнал доставлен · Родители получили сигнал в 12:31»."]],
+    sc: [["Fendino · SOS", [["Сигнал доставлен","1510-3315"]]]],
+    ty: "app" },
+  { ev: "Родитель в курсе", tr: "Fendoro: кнопка «Я в курсе» на экране тревоги",
+    rc: [["Fendino", "Состояние «Родитель увидел сигнал»."], ["Fendoro", "Вместо «Я в курсе» кнопка «Закрыть тревогу»."]],
+    sc: [["Fendoro · SOS от ребёнка", [["Тревога SOS","1512-8455"]]]],
+    ty: "app" },
+  { ev: "Тревога закрыта родителем", tr: "Fendoro: «Закрыть тревогу»",
+    rc: [["Fendino", "Возврат к обычному экрану, текст не решён."], ["Fendoro", "Экран закрывается, тревога остаётся в ленте."]],
+    sc: [],
+    ty: "app" },
+  { ev: "Ребёнок отменил SOS", tr: "Fendino: «Я в порядке, отменить»",
+    rc: [["Fendoro", "Пуш «Тревога отменена» (п. 2). Экран тревоги становится зелёным «Тревога отменена», в ленте «Ребёнок отменил SOS»."], ["Fendino", "«Тревога отменена»."]],
+    sc: [["Fendoro · SOS от ребёнка", [["Пуш «Тревога отменена»","1512-8650"],["Тревога отменена","1512-8724"]]], ["Fendino · SOS", [["Тревога отменена","1510-3367"]]]],
+    ty: "push" },
+  { ev: "Тревога сброшена по таймауту", tr: "Сервер: 30 минут без «Я в курсе»",
+    rc: [["Fendoro", "Как при отмене ребёнком: пуш и запись «Тревога отменена»."], ["Fendino", "Ничего."]],
+    sc: [],
+    ty: "push" },
+  { ev: "Сигнал не ушёл", tr: "Fendino: не прошли ни MQTT, ни HTTP",
+    rc: [["Fendino", "«Сигнал не ушёл», повторное удержание, будет кнопка «Позвонить 112»."]],
+    sc: [["Fendino · SOS", [["Сигнал не ушёл","1510-3418"]]]],
+    ty: "app" }
+ ]},
+ { g: "Геозоны", rows: [
+  { ev: "Вход в зону", tr: "Fendino: телефон определил вход (задержка 120 секунд), сервер сверяет по точкам",
+    rc: [["Fendoro", "Пуш «{Имя} в зоне «{Зона}»» (п. 3). Событие в ленте и в «Событиях за день» шита ребёнка, чип места."]],
+    sc: [["Fendoro · История", [["События","1508-4180"]]], ["Fendoro · Карта", [["Шит ребёнка","1507-1636"]]]],
+    ty: "push" },
+  { ev: "Выход из зоны", tr: "Fendino: телефон определил выход (задержка 120 секунд), сервер сверяет по точкам",
+    rc: [["Fendoro", "Пуш «{Имя} вне зоны «{Зона}»» (п. 4). Событие в ленте и в «Событиях за день»."]],
+    sc: [["Fendoro · История", [["События","1508-4180"]]]],
+    ty: "push" },
+  { ev: "Геозона дошла до телефона ребёнка", tr: "Fendino скачал новый или изменённый набор зон и подтвердил получение",
+    rc: [["Fendoro", "Пуш «Геозона «Школа» добавлена в приложении Алексея» или «…изменена» (FEN-123). Статус зоны в списке и в деталях."], ["Fendino", "Без интерфейса."]],
+    sc: [["Fendoro · Геозоны", [["Зона добавлена","1508-1710"],["Список зон","1508-1772"],["Детали зоны","1508-1991"]]]],
+    ty: "push" },
+  { ev: "Геозона удалена", tr: "Fendoro: «Удалить зону»",
+    rc: [["Fendino", "Получает новый набор зон, без интерфейса."], ["Fendoro", "Возврат к списку."]],
+    sc: [["Fendoro · Геозоны", [["Удалить зону?","1508-2019"],["Зон нет","1508-2071"]]]],
+    ty: "svc" }
+ ]},
+ { g: "Батарея", rows: [
+  { ev: "Низкий заряд", tr: "Сервер: заряд в последней точке ≤ 15%, один раз за разряд, сброс после 20%",
+    rc: [["Fendoro", "Пуш «{Имя}: заряд {N}%» (п. 5). Экран «Низкий заряд», красное кольцо пина и плашка на карте, запись в ленте."]],
+    sc: [["Fendoro · Низкий заряд", [["Пуш","1507-5378"],["Низкий заряд","1507-5435"],["Карта","1507-5574"]]], ["Fendoro · Ошибки на карте", [["Низкий заряд","1512-8080"]]]],
+    ty: "push" },
+  { ev: "Критический заряд", tr: "Сервер: заряд < 5%",
+    rc: [["Fendoro", "Пуш «{Имя}: заряд {N}% · Телефон вот-вот выключится. Последнее место останется на карте» (п. 6)."]],
+    sc: [],
+    ty: "push" }
+ ]},
+ { g: "Связь и телефон ребёнка", rows: [
+  { ev: "Нет связи с телефоном ребёнка", tr: "Сервер: нет точек больше 15 минут",
+    rc: [["Fendoro", "Пуш «{Имя}: нет связи» (п. 8), тихие часы не действуют. Серый пин «был в 14:32», плашка «Нет связи с телефоном ребёнка», в ленте «Связь пропала»."]],
+    sc: [["Fendoro · Ошибки на карте", [["Нет связи","1512-7594"]]], ["Fendoro · Справочник", [["Пины на карте","1459-15402"]]]],
+    ty: "push" },
+  { ev: "Телефон выключен", tr: "Телефон ребёнка выключен",
+    rc: [["Fendoro", "Пуш «{Имя}: телефон выключен» (п. 7)."]],
+    sc: [],
+    ty: "push" },
+  { ev: "Геолокация выключена", tr: "Fendino сообщает, что геолокация выключена; сервер ждёт 1 час",
+    rc: [["Fendoro", "Пуш «{Имя}: геолокация выключена» (п. 9). Пин с иконкой выключенного GPS, плашка, запись в ленте."], ["Fendino", "«Геолокация выключена · Включить», переход в системные настройки."]],
+    sc: [["Fendoro · Ошибки на карте", [["Геолокация выключена","1512-7839"]]], ["Fendino · Связь с родителями", [["Геолокация выключена","1510-4131"],["Системные настройки","1510-4135"]]]],
+    ty: "push" },
+  { ev: "Слежение работает не полностью", tr: "Fendino: отчёт о настройках (геолокация не «всегда», уведомления, экономия батареи и т. д.)",
+    rc: [["Fendoro", "Пуш «{Имя}: слежение работает не полностью» (п. 10). Плашка на карте, по тапу «Чек-лист защиты»."], ["Fendino", "Полоса «Связь работает не полностью · Что включить», по тапу «Проверка настроек»."]],
+    sc: [["Fendoro · Ошибки на карте", [["Связь не полностью","1512-5469"],["Чек-лист защиты","1512-5748"]]], ["Fendino · Связь с родителями", [["Не полностью","1510-3519"],["Проверка настроек","1510-3764"],["Всё включено","1510-3885"]]]],
+    ty: "push" },
+  { ev: "Разрешения отозваны", tr: "Fendino: в настройках телефона выключили геолокацию или другие доступы",
+    rc: [["Fendino", "Экран «Доступы выключены» или «Связь остановлена · Проверить доступы»."], ["Fendoro", "Как «Слежение работает не полностью»."]],
+    sc: [["Fendino · Сбои приложения", [["Разрешения отозваны","1513-5199"]]], ["Fendino · Связь с родителями", [["Связь остановлена","1510-3982"]]]],
+    ty: "app" },
+  { ev: "Fendino удалено", tr: "Fendino удалено с телефона ребёнка",
+    rc: [["Fendoro", "Пуш «{Имя}: Fendino удалено» (п. 11). Экран «Что случилось» с инструкцией, плашка на карте."]],
+    sc: [["Fendoro · Fendino удалено", [["Пуш","1507-5588"],["Что случилось","1507-5629"],["Карта","1507-5769"]]], ["Fendoro · Ошибки на карте", [["Fendino отключено","1512-6809"]]]],
+    ty: "push" },
+  { ev: "Fendino устарело", tr: "Fendino: версия ниже минимальной",
+    rc: [["Fendino", "Экран «Нужно обновить Fendino» и кнопка «Обновить в Google Play»."], ["Fendoro", "Плашка «Обновите Fendino у ребёнка» и диалог с инструкцией."]],
+    sc: [["Fendino · Сбои приложения", [["Приложение устарело","1513-5162"]]], ["Fendoro · Ошибки на карте", [["Fendino устарело","1512-6123"],["Обновите Fendino","1512-6425"]]]],
+    ty: "app" }
+ ]},
+ { g: "Местоположение по запросу", rows: [
+  { ev: "Обновить местоположение", tr: "Fendoro: кнопка обновления в шите ребёнка",
+    rc: [["Fendino", "Делает разовую точку, без интерфейса."], ["Fendoro", "«Обновляем…», затем новая точка или «Не удалось обновить · Повторить»."]],
+    sc: [["Fendoro · Карта", [["Обновляем","1507-1866"],["Не удалось обновить","1507-2373"]]]],
+    ty: "svc" },
+  { ev: "Частый трекинг", tr: "Fendoro: «Частый трекинг» в меню «Ещё»",
+    rc: [["Fendino", "Шлёт точку каждые 5 секунд."]],
+    sc: [],
+    ty: "svc" }
+ ]},
+ { g: "Чат и отметка (в макете пока нет)", rows: [
+  { ev: "Сообщение от ребёнка", tr: "Fendino: отправка в чате",
+    rc: [["Fendoro", "Пуш «{Имя}» с текстом (п. 12), не приходит, если этот чат открыт."]],
+    sc: [],
+    ty: "push" },
+  { ev: "Сообщение от родителя", tr: "Fendoro: отправка в чате",
+    rc: [["Fendino", "Уведомление «{Имя родителя}» с текстом (п. 14)."]],
+    sc: [],
+    ty: "push" },
+  { ev: "Отметка «я на месте»", tr: "Fendoro: «Попросить отметиться», затем Fendino: «Я на месте»",
+    rc: [["Fendino", "«Тебя спрашивают, всё ли хорошо» и кнопка «Я на месте»."], ["Fendoro", "Сообщение «Отметка «я на месте»» с местом, запись в ленте."]],
+    sc: [],
+    ty: "push" }
+ ]},
+ { g: "Привязка телефона", rows: [
+  { ev: "Телефон подключён", tr: "Fendino: ввели код или отсканировали QR",
+    rc: [["Fendoro", "Экран ожидания сменяется на «Телефон ребёнка подключён». Пуш «{Имя}: телефон подключён» (п. 13), если родитель ушёл с экрана."], ["Fendino", "«Телефон подключён!», затем разрешения."]],
+    sc: [["Fendoro · Первый запуск", [["Код для ребёнка","1512-3410"],["Телефон подключён","1512-3442"]]], ["Fendino · Первый запуск", [["Ввод кода","1510-647"],["Подключено","1510-676"]]]],
+    ty: "push" },
+  { ev: "Код истёк", tr: "Fendoro: время кода вышло (15 минут)",
+    rc: [["Fendoro", "«Код истёк», кнопка «Получить новый код»."], ["Fendino", "При вводе старого кода «Код устарел»."]],
+    sc: [["Fendoro · Первый запуск", [["Код истёк","1512-4150"],["Новый код","1512-4194"]]]],
+    ty: "app" },
+  { ev: "Телефон отвязан", tr: "Fendoro: «Отвязать телефон»",
+    rc: [["Fendino", "«Подключение больше не действует», затем «Ввести новый код» без переустановки."], ["Fendoro", "Снекбар «Телефон ребёнка отвязан», в шите «Телефон не привязан»."]],
+    sc: [["Fendoro · Профиль ребёнка", [["Отвязать?","1508-6833"],["Телефон отвязан","1508-7217"]]], ["Fendino · Сбои приложения", [["Привязка недействительна","1513-6437"],["Ввод кода","1513-6489"]]]],
+    ty: "app" }
+ ]},
+ { g: "Семья", rows: [
+  { ev: "Взрослый вступил в семью", tr: "Fendoro второго взрослого: ввёл код приглашения",
+    rc: [["Вступивший", "«Вы в семье», затем карта семьи."], ["Пригласивший", "Пуш и новый участник в «Семейном круге» (по заметке в макете)."]],
+    sc: [["Fendoro · Семейный круг", [["Код приглашения","1513-3734"],["Вы в семье","1513-3764"],["Карта семьи","1513-3912"]]]],
+    ty: "push" },
+  { ev: "Взрослый удалён из семьи", tr: "Fendoro админа: удаление в «Семейном круге»",
+    rc: [["Удалённый", "«Вы больше не в семье», затем пустая карта."], ["Админ", "Снекбар «Павел больше не в семье»."]],
+    sc: [["Fendoro · Семейный круг", [["Удалить взрослого?","1513-3992"],["Взрослый удалён","1513-4095"],["Вы больше не в семье","1513-4138"]]]],
+    ty: "app" },
+  { ev: "Ребёнок удалён", tr: "Fendoro: «Удалить ребёнка»",
+    rc: [["Fendino", "«Подключение больше не действует»."], ["Fendoro", "Снекбар «Ребёнок удалён из круга»."]],
+    sc: [["Fendoro · Профиль ребёнка", [["Удалить?","1508-7513"],["Ребёнок удалён","1508-7748"]]]],
+    ty: "app" },
+  { ev: "Аккаунт удалён", tr: "Fendoro: «Удалить аккаунт»",
+    rc: [["Fendino", "Если взрослый был в семье один, телефоны детей отключаются."], ["Другие взрослые", "Остаются в семье, права админа переходят к ним."]],
+    sc: [["Fendoro · Аккаунт", [["Удалить аккаунт?","1509-3493"],["Аккаунт удалён","1509-3656"]]]],
+    ty: "svc" }
+ ]},
+ { g: "Телефон родителя", rows: [
+  { ev: "Нет интернета у родителя", tr: "Fendoro: телефон потерял сеть",
+    rc: [["Fendoro", "Плашка вверху карты «Нет интернета на этом телефоне»."]],
+    sc: [["Fendoro · Ошибки на карте", [["Нет интернета у родителя","1512-8321"]]]],
+    ty: "app" },
+  { ev: "Уведомления Fendoro выключены", tr: "Fendoro: уведомления запрещены в настройках Android",
+    rc: [["Fendoro", "Плашка вверху карты, по тапу системные настройки уведомлений."]],
+    sc: [["Fendoro · Ошибки на карте", [["Уведомления выключены","1512-7129"],["Системные настройки","1512-7133"],["Плашка исчезла","1512-7365"]]]],
+    ty: "app" }
+ ]},
+ { g: "Телефон ребёнка", rows: [
+  { ev: "Fendino без связи с сервером", tr: "Fendino: нет подключения к серверу",
+    rc: [["Fendino", "«Нет связи · Пробуем подключиться ещё раз. Родители видят последнее место»."]],
+    sc: [["Fendino · Связь с родителями", [["Нет связи","1510-4227"]]]],
+    ty: "app" }
+ ]}
+];
+
+const state = { type: "all" };
+const allRows = DATA.flatMap(g => g.rows);
+
+function el(tag, attrs, children) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) { if (k === "class") e.className = attrs[k]; else if (k === "text") e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); }
+  (children || []).forEach(c => c && e.appendChild(typeof c === "string" ? document.createTextNode(c) : c));
+  return e;
+}
+
+function chip(group, key, label, count) {
+  const b = el("button", { class: "chip", type: "button", "aria-pressed": String(state[group] === key), id: "chip-" + group + "-" + key });
+  b.appendChild(document.createTextNode(label));
+  b.appendChild(el("span", { class: "n", text: String(count) }));
+  b.addEventListener("click", () => { state[group] = key; renderControls(); renderGroups(); });
+  return b;
+}
+
+function renderControls() {
+  const ft = document.getElementById("f-type");
+  while (ft.children.length > 1) ft.removeChild(ft.lastChild);
+  ft.appendChild(chip("type", "all", "Все", allRows.length));
+  for (const k in TYPES) ft.appendChild(chip("type", k, TYPES[k][0], allRows.filter(r => r.ty === k).length));
+}
+
+function row(r) {
+  const tdEv = el("td", { class: "ev" }, [r.ev]);
+  const tdRc = el("td", { class: "rc" }, r.rc.map(([who, txt]) => el("p", null, [el("span", { class: "app-tag", text: who }), txt])));
+  const tdSc = el("td", { class: "sc" });
+  if (!r.sc.length) tdSc.appendChild(el("span", { class: "none", text: "Нет в макете" }));
+  r.sc.forEach(([sec, frames]) => {
+    const d = el("div", null, [el("span", { class: "sec", text: sec + ": " })]);
+    frames.forEach(([name, id], i) => {
+      d.appendChild(el("a", { href: FIG + id, target: "_blank", rel: "noopener", text: name }));
+      if (i < frames.length - 1) d.appendChild(document.createTextNode(", "));
+    });
+    tdSc.appendChild(d);
+  });
+  const tdTy = el("td", null, [el("span", { class: "pill " + TYPES[r.ty][1], text: TYPES[r.ty][0] })]);
+  return el("tr", null, [tdEv, el("td", { text: r.tr }), tdRc, tdSc, tdTy]);
+}
+
+function renderGroups() {
+  const host = document.getElementById("groups");
+  host.textContent = "";
+  let shown = 0;
+  DATA.forEach(g => {
+    const rows = g.rows.filter(r => (state.type === "all" || r.ty === state.type));
+    if (!rows.length) return;
+    shown += rows.length;
+    const cols = el("colgroup", null, ["c-ev","c-tr","c-rc","c-sc","c-ty"].map(c => el("col", { class: c })));
+    const head = el("thead", null, [el("tr", null, ["Событие","Триггер","Что видит получатель","Экраны в макете","Тип"].map(h => el("th", { scope: "col", text: h })))]);
+    const body = el("tbody", null, rows.map(row));
+    host.appendChild(el("section", { class: "group" }, [
+      el("h2", null, [g.g, el("span", { class: "cnt", text: String(rows.length) })]),
+      el("div", { class: "tbl-wrap" }, [el("table", null, [cols, head, body])])
+    ]));
+  });
+  if (!shown) host.appendChild(el("p", { class: "empty", text: "Под эти фильтры событий нет." }));
+}
+
+renderControls();
+renderGroups();
+</script>
+</body>
+</html>
